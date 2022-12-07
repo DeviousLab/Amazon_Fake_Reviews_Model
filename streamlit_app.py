@@ -1,6 +1,5 @@
 import streamlit as st
 import pickle
-import nltk
 from textblob import TextBlob
 from nltk.corpus import stopwords
 from nltk.stem import  PorterStemmer 
@@ -43,30 +42,29 @@ def text_classification(text):
             p = ''.join(str(i) for i in prediction)
         
             if p == 'True':
-                st.success("The review entered is Legitimate.")
+                st.success("The review entered is by a real user.")
             if p == 'False':
-                st.error("The review entered is Fraudulent.")
+                st.error("The review entered is by a fake user.")
 
 def main():
     st.title("Amazon Fake Reviews Model")
     
     st.subheader("About")
     if st.checkbox("About Classifer"):
-        st.markdown('**Model:** Logistic Regression')
+        st.markdown('**Model:** Stochastic Gradient Descent')
         st.markdown('**Vectorizer:** Count')
         st.markdown('**Test-Train splitting:** 30% - 70%')
         st.markdown('**Stemmer:** PorterStemmer')
         
     if st.checkbox("Evaluation Results"):
-        st.markdown('**Accuracy:** 85%')
-        st.markdown('**Precision:** 80%')
-        st.markdown('**Recall:** 92%')
-        st.markdown('**F-1 Score:** 85%')
+        st.markdown('**Accuracy:** 87.6%')
+        st.markdown('**Precision:** 89.7%')
+        st.markdown('**Recall:** 85.0%')
+        st.markdown('**F-1 Score:** 87.2%')
 
     st.subheader("Fake Review Classifier")
     review = st.text_area("Enter Review: ")
     if st.button("Check"):
         text_classification(review)
-
-#RUN MAIN        
+       
 main()
